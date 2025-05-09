@@ -1,0 +1,35 @@
+# Arquivos e diretórios do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ambientes virtuais
+venv/
+.env
+
+# Configurações do Flask e variáveis de ambiente
+instance/
+.env
+*.env
+
+# Dependências
+*.egg-info/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Logs e caches
+logs/
+*.log
+cache/
+*.sqlite3
+
+# IDEs e editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
