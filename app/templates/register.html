@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" href="../static/css/register.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="content" id="content">
+
+            <div class="register">
+
+                <div class="header">
+
+                    <h1>Cadastrar-se</h1>
+
+                    <button onclick="toggleForms()">LOGIN</button>
+
+                </div>
+
+                <form action="/get_user_register" method="POST" autocomplete="off">
+
+                    <div class="row">
+                        <span class="material-symbols-outlined">Person</span>
+                        <input type="text" name="name_register" id="name_register" required minlength="3" placeholder="Seu nome">
+                    </div>
+
+                    <div class="row">
+                        <span class="material-symbols-outlined">Person</span>
+                        <input type="text" name="email_register" id="email_register" required minlength="12" placeholder="Seu email ">
+                    </div>
+
+                    <div class="row">
+                        <span class="material-symbols-outlined">Lock</span>
+                        <input type="password" name="password_register" id="password_register" required minlength="8" placeholder="Sua senha">
+                    </div>
+
+                    {% if error_register %}
+                        <div class="error">
+                            <p>{{ error_register }}</p>
+                        </div>
+                    {% endif %}
+
+                    <button id="btn_register" onclick="get_spin_register()">Cadastrar</button>
+
+                    <div class="load" id="load_register">
+
+                        <button>
+                            <div class="spin"></div>
+                        </button>
+
+                    </div>
+
+                    <p>Ou continue com</p>
+
+                    <div class="ico_links">
+
+                        <a href="#">
+                            <img src="../static/imagens/google.png" alt="">
+                        </a>
+
+                        <a href="#">
+                            <img src="../static/imagens/facebook.png" alt="">
+                        </a>
+
+                        <a href="#">
+                            <img src="../static/imagens/github.png" alt="">
+                        </a>
+
+                        <a href="#">
+                            <img src="../static/imagens/linkedin.png" alt="">
+                        </a>
+
+                    </div>
+
+                </form>
+                
+            </div>
+
+            <div class="login">
+
+                <div class="header">
+
+                    <h1>Entrar</h1>
+
+                    <button onclick="toggleForms()">CADASTRAR</button>
+
+                </div>
+
+                <form action="/get_user_login" method="POST" autocomplete="off">
+
+                    <div class="row">
+                        <span class="material-symbols-outlined">Person</span>
+                        <input type="text" name="email_login" id="email_login" required minlength="12" placeholder="Seu email ">
+                    </div>
+
+                    <div class="row">
+                        <span class="material-symbols-outlined">Lock</span>
+                        <input type="password" name="password_login" id="password_login" required minlength="8" placeholder="Sua senha">
+                    </div>
+
+                    <a href="#">Esqueceu a senha?</a>
+
+                    {% if error_login %}
+                        <div class="error">
+                            <p>{{ error_login }}</p>
+                        </div>
+                    {% endif %}
+
+                    <button id="btn_login" onclick="get_spin_login()">Login</button>
+
+                    <div class="load" id="load_login">
+
+                        <button>
+                            <div class="spin"></div>
+                        </button>
+
+                    </div>
+
+                    <p>Ou continue com</p>
+
+                    <div class="ico_links">
+
+                        <a href="#">
+                            <img src="../static/imagens/google.png" alt="">
+                        </a>
+
+                        <a href="#">
+                            <img src="../static/imagens/facebook.png" alt="">
+                        </a>
+
+                        <a href="#">
+                            <img src="../static/imagens/github.png" alt="">
+                        </a>
+
+                        <a href="#">
+                            <img src="../static/imagens/linkedin.png" alt="">
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="../static/js/register.js"></script>
+
+</body>
+
+</html>

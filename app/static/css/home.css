@@ -1,0 +1,228 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+:root {
+    --fist-color: #0077ff;
+    --second-color: #ffffff;
+    --thirt-color: #fffb00;
+    --room-color: #ff0000;
+    --five-color: #08c908;
+    --six-color: #031926;
+}
+
+@media (max-width: 786px) {
+
+    body {
+        background-color: var(--six-color);
+    }
+
+    /* Configurações do header */
+    main > header {
+        width: 100%;
+        padding: .7em;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        background-color: var(--fist-color);
+    }
+
+    /* Header Menu Hamburger */
+
+    main > header > .menu {
+        position: relative;
+    }
+
+    main > header > .menu > span {
+        font-size: 2.5em;
+        cursor: pointer;
+
+        color: var(--second-color);
+    }
+
+    main > header > .menu > .menu-info {
+        position: absolute;
+        right: 0px;
+        transform: translateY(50%);
+        padding: .6em;
+        border-radius: 7px;
+
+        display: none;
+
+        background-color: #ffffffde;
+        backdrop-filter: blur(1px);
+    }
+
+    main > header > .menu > .menu-info > ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    main > header > .menu > .menu-info > ul > li{
+        list-style: none;
+        font-size: 1.4em;
+        font-weight: bold;
+        margin-bottom: 7px;
+    }
+
+    main > header > .menu > .menu-info > ul > li > a {
+        text-decoration: none;
+
+        color: var(--fist-color);
+    }
+
+    main>header>form {
+        width: 87%;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    main>header>form>input {
+        width: 95%;
+        padding: .5em;
+        font-size: 1em;
+        border-radius: 20px;
+        border: none;
+        outline: none;
+    }
+
+    main > header > form > button {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        margin-left: 10px;
+    }
+
+    /* Configurações status product */
+    main>.status-product {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    main>.status-product>p {
+        text-align: center;
+        font-size: 1em;
+        font-weight: bold;
+        padding: .3em;
+        margin-top: 10px;
+    }
+
+    #first {
+        background-color: var(--five-color);
+    }
+
+    #second {
+        background-color: var(--thirt-color);
+    }
+
+    #thirt {
+        background-color: var(--room-color);
+    }
+
+    /* Configurações header de products */
+    main > .products {
+        padding: .5em;
+    }
+
+    main > .products > .header {
+        padding: .5em;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        background-color: var(--fist-color);
+    }
+
+    main > .products > .header > h1 {
+        color: var(--second-color);
+    }
+
+    main > .products > .header > a > button {
+        font-size: 1em;
+        font-weight: bold;
+        padding: .5em;
+        border: none;
+        border-radius: 7px;
+        cursor: pointer;
+
+        background-color: var(--five-color);
+        color: var(--second-color);
+    }
+
+    /* Configurações filter */
+    main > .products > .filter {
+        width: 100%;
+        margin-top: 10px;
+        padding: .5em;
+
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    main > .products > .filter > span {
+        color: var(--second-color);
+        
+        cursor: pointer;
+    }
+
+    /* Configurações box-product */
+    main > .products > .box-product {
+        padding: .4em;
+        margin-top: 10px;
+        border-radius: 5px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        background-color: var(--second-color);
+        border: 5px solid var(--fist-color);
+    }
+
+    main > .products > .box-product > img {
+        width: 140px;
+        height: 120px;
+    }
+
+    main > .products > .box-product > .info-product {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+    }
+
+    main > .products > .box-product > .info-product > .name, .validade, .res-dias {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        margin-bottom: 7px;
+    }
+
+    main > .products > .box-product > .info-product > .name > h1, .validade > h1, .res-dias > h1 {
+        font-size: 1.2em;
+        margin-right: 7px;
+
+        color: var(--fist-color);
+    }
+
+    main > .products > .box-product > .info-product > .name > p, .validade > p, .res-dias > p {
+        font-size: 1em;
+    }
+
+}

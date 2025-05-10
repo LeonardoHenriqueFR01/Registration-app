@@ -1,0 +1,277 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+:root {
+    --fist-color: #0077ff;
+    --second-color: #ffffff; 
+}
+
+@media (max-width: 786px) {
+    body {
+        height: 100vh;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        background-color: var(--fist-color);
+    }
+
+    .container {
+        overflow: hidden;
+
+        width: 500px;
+        height: 510px;
+    }
+
+    .content {
+        width: 200%;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    
+        transition: .8s ease-in-out;
+    }
+
+    /* Class .active para troca de form */
+    .active {
+        transform: translateX(-50%);
+    }
+
+    /* Configurações mensagem de error form */
+    .error {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .error > p {
+        font-size: 1em;
+
+        color: red;
+    }
+
+    /* Configurações form de register */
+    .register {
+        padding: 1em;
+        height: 510px;
+        width: 380px;
+        border-radius: 10px;
+
+        border: 1px solid #000;
+        background-color: var(--second-color);
+    }
+
+    .register > .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .register > .header > h1 {
+        font-size: 1em;
+    }
+
+    .register > .header > button {
+        padding: .5em;
+        font-size: 1em;
+        font-weight: bold;
+        border: none;
+        border-radius: 7px;
+        cursor: pointer;
+        
+        background-color: var(--fist-color);
+        color: var(--second-color);
+    }
+
+    .register > form {
+        display: flex;
+        flex-direction: column;
+    
+        margin-top: 50px;
+    }
+
+    .register > form > p {
+        text-align: center;
+        font-size: 1.2em;
+        margin-top: 10px;
+    }
+
+    .register > form > button {
+        padding: .4em;
+        font-size: 1em;
+        font-weight: bold;
+        cursor: pointer;
+        border: none;
+        border-radius: 7px;
+        margin-top: 20px;
+
+        background-color: var(--fist-color);
+        color: var(--second-color);
+    }
+
+    /* Configurações form de login */
+    .login {
+        padding: 1em;
+        height: 500px;
+        width: 380px;
+        border-radius: 10px;
+
+        border: 1px solid #000;
+        background-color: var(--second-color);
+    }
+
+    .login > .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .login > .header > h1 {
+        font-size: 1em;
+    }
+
+    .login > .header > button {
+        padding: .4em;
+        font-size: 1em;
+        font-weight: bold;
+        border: none;
+        border-radius: 7px;
+        cursor: pointer;
+        
+        background-color: var(--fist-color);
+        color: var(--second-color);
+    }
+
+    .login > form {
+        display: flex;
+        flex-direction: column;
+    
+        margin-top: 70px;
+    }
+
+    .login > form > p {
+        text-align: center;
+        font-size: 1.2em;
+        margin-top: 10px;
+    }
+
+    .login > form > a {
+        text-align: right;
+        font-size: 1em;
+        text-decoration: none;
+
+        color: var(--fist-color);
+    }
+
+    .login > form > button {
+        padding: .5em;
+        font-size: 1em;
+        font-weight: bold;
+        cursor: pointer;
+        border: none;
+        border-radius: 7px;
+        margin-top: 20px;
+
+        background-color: var(--fist-color);
+        color: var(--second-color);
+    }
+
+    /* Configurações input moderno */
+    .row {
+        display: flex;
+
+        padding: .1em;
+        margin-bottom: 15px;
+
+        background-color: #f0f0f0;
+    }
+
+    .row > span {
+        font-size: 2.5em;
+        
+        border-right: 2px solid #000;
+    }
+
+    .row > input {
+        width: 100%;
+        padding: .5em;
+        font-size: 1.2em;
+        outline: none;
+        border: none;
+        
+        background-color: transparent;
+    }
+
+    /* Icones links form */
+    .ico_links {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        margin-top: 30px;
+    }
+
+    .ico_links > a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 70px;
+        padding: .5em;
+        border-radius: 15px;
+
+        border: 1px solid #000;
+    }
+
+    .ico_links > a > img {
+        width: 20px; 
+    }
+
+    /* Configurações spin button */
+    #load_register, #load_login {
+        display: none;
+    }
+
+    .load > button {
+        width: 100%;
+        padding: .1em;
+        margin-top: 20px;
+        border: none;
+        border-radius: 7px;
+
+        background-color: var(--fist-color);
+    
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .load > button > .spin {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        
+        border: 2px solid var(--second-color);
+        border-bottom-color: transparent;
+    
+        animation: spin 1s ease-in-out infinite;
+    }
+
+    /* Keyframe spin button */
+    @keyframes spin {
+        0% {
+            transform:  rotate(0deg);
+        }
+        
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" href="../static/css/index.css">
+
+</head>
+
+<body>
+
+    <main>
+
+        <header>
+
+            <form action="/search" method="GET" autocomplete="off">
+
+                <input type="search" id="search" placeholder="Pesquisar produto">
+
+            </form>
+
+            <div class="menu">
+
+                <a href="{{ url_for('main.register') }}" onclick="return confirm('Deseja sair da sessão?')">
+                    <button>
+                        <span class="material-symbols-outlined">Logout</span>
+                    </button>
+                </a>
+
+            </div>
+
+        </header>
+
+        <section class="status-product">
+
+            <p id="first">PRODUTOS CADASTRADOS (0)</p>
+
+            <p id="second">VENCIMENTO EM 20 DIAS (0)</p>
+
+            <p id="thirt">VENCIMENTO EM 7 DIAS (0)</p>
+
+        </section>
+
+        <section class="products">
+
+            <article class="header">
+
+                <h1>Produtos Cadastrados:</h1>
+
+                <a href="{{ url_for('main.new_product') }}">
+                    <button>Cadastrar</button>
+                </a>
+
+            </article>
+
+            <section class="filter">
+
+                <span class="material-symbols-outlined">Event_list</span>
+
+            </section>
+
+            {% for product in products %}
+                <article class="box-product">
+                    <img src="{{ url_for('static', filename='uploads/' ~ product.image_filename) }}" alt="Imagem do Produto">
+                    
+                    <div class="info-product">
+                        <div class="name">
+                            <h1>Nome:</h1>
+                            <p>{{ product.name }}</p>
+                        </div>
+            
+                        <div class="validade">
+                            <h1>Validade:</h1>
+                            <p>{{ product.product_value }}</p>
+                        </div>
+            
+                        <div class="res-dias">
+                            <h1>Dias restantes:</h1>
+                            <p>
+                                <p>Teste</p>
+                            </p>
+                        </div>
+                    </div>
+                </article>
+            {% endfor %}
+
+        </section>
+
+    </main>
+
+    <script src="../static/js/index.js"></script>
+
+</body>
+
+</html>
