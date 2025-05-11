@@ -10,24 +10,19 @@
 <body>
 
     <div class="header">
-        <a href="{{ url_for('main.home') }}">
+        <a href="">
             <span class="material-symbols-outlined">close</span>
         </a>
         <h1>Novo Produto</h1>
     </div>
 
-    <form action="/get_new_product" method="POST">
-        <input type="text" class="input_name" name="name" placeholder="Nome do produto" required><br><br>
-
-        <input type="date" name="product_value" id="product_value" required maxlength="10" placeholder="Validade">
-
-        <video id="video" autoplay playsinline></video><br>
-        <button type="button" onclick="tirarFoto()" class="btn_foto">Tirar Foto</button><br><br>
-
-        <canvas id="canvas" width="320" height="100" style="display:none;"></canvas>
-
+    <h1>Cadastro de Produto</h1>
+    <form method="POST">
+        <input type="text" name="name" placeholder="Nome do produto" required><br><br>
+        <video id="video" width="320" height="240" autoplay></video><br>
+        <button type="button" onclick="tirarFoto()">Tirar Foto</button><br><br>
+        <canvas id="canvas" width="320" height="240" style="display:none;"></canvas>
         <input type="hidden" name="image_data" id="image_data">
-
         <button type="submit">Enviar</button>
     </form>
 
