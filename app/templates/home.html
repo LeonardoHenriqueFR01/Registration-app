@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/home.css') }}">
 
 </head>
 
@@ -26,7 +26,7 @@
 
             <div class="menu">
 
-                <a href="{{ url_for('main.register') }}" onclick="return confirm('Deseja sair da sessão?')">
+                <a href="{{ url_for('main.index') }}" onclick="return confirm('Deseja sair da sessão?')">
                     <button>
                         <span class="material-symbols-outlined">Logout</span>
                     </button>

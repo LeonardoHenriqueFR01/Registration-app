@@ -9,9 +9,9 @@ class User(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True)
 
-    name = db.Column(db.Strin(150), unique=True, nullable=False)
-    email = db.Column(db.Strin(150), unique=True, nullable=False)
-    password = db.Columm(db.String(350), nullable=False)
+    name = db.Column(db.String(150), unique=True, nullable=False)
+    email = db.Column(db.String(150), unique=True, nullable=False)
+    password = db.Column(db.String(350), nullable=False)
 
     def __repr__(self):
         return f'<user {self.name}, {self.email}>'

@@ -10,7 +10,7 @@
 <body>
 
     <div class="header">
-        <a href="">
+        <a href="{{ url_for('main.home') }}" onclick="return confirm('Voltar ao início?')">
             <span class="material-symbols-outlined">close</span>
         </a>
         <h1>Novo Produto</h1>

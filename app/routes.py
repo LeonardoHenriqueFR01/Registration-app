@@ -15,9 +15,16 @@ def index():
 
 # Rota para página apos fazer registro/login
 @main.route('/home')
+@login_required
 def home():
     return render_template('home.html')
     
+# Rota para página de cadastro de produtos
+@main.route('/new_product')
+@login_required
+def new_product():
+    return render_template('new_product.html')
+
 # Rota para fazer registro
 @main.route('/get_user_register', methods=['POST', 'GET'])
 def get_user_register():
