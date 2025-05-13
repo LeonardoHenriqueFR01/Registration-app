@@ -23,6 +23,30 @@ class User(db.Model, UserMixin):
             'email':self.email
         }
 
+    infos = db.relationship('Products', backref='user', lazy=True)
+
+
+class Products(db.Model):
+    __tablename__ = 'products'
+
+    id = db.Column(db.Integer, primary_key=True)
+
+    name = db.Column(db.String(150), nullable=False)
+    image_filename = db.Column(db.String(150), nullable=False)
+
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+
+    def __repr__(self):
+        return f'<info {self.name}, {self.image_data}>'
+
+    def asdict(self):
+        return {
+            'id':self.id,
+            'name':self.name,
+            'image_data':self.image_filename,
+            'user_id':self.user_id
+        }
+
 
 @login_manager.user_loader
 def laod_user(user_id):

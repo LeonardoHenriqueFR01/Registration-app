@@ -16,6 +16,7 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+    app.config['UPLOAD_FOLDER'] = os.path.join(app.root_path, 'static', 'uploads')
 
     db.init_app(app)
     login_manager.init_app(app)
@@ -25,5 +26,7 @@ def create_app():
 
     with app.app_context():
         db.create_all()
+
+    os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
     return app

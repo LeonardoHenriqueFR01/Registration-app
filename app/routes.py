@@ -1,9 +1,12 @@
-from flask import render_template, request, redirect, url_for, Blueprint, session
+from flask import render_template, request, redirect, url_for, Blueprint, session, current_app
+from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, login_required, current_user
-from .models import User
+from .models import User, Products
 from . import db
 from time import sleep
+import os
+import base64
 
 
 main = Blueprint('main', __name__)
@@ -17,7 +20,8 @@ def index():
 @main.route('/home')
 @login_required
 def home():
-    return render_template('home.html')
+    products = Products.query.filter_by(user_id=current_user.id).all()
+    return render_template('home.html', products=products)
     
 # Rota para página de cadastro de produtos
 @main.route('/new_product')
@@ -80,3 +84,31 @@ def get_user_login():
             return render_template('register.html', error_login=error_message)
         
     return render_template('register.html')
+
+# Rota para fazer cadastro de um novo produto
+@main.route('/get_new_product', methods=['POST', 'GET'])
+@login_required
+def get_new_product():
+    if request.method == 'POST':
+        name = request.form['name']
+        image_data = request.form['image_data']
+
+        if image_data:
+            # Extrair base64 da image
+            image_str = image_data.split(',')[1]
+            image_bytes = base64.b64decode(image_str)
+
+            filename = secure_filename(f"{name}.png")
+            filepath = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
+
+            with open(filepath, 'wb') as f:
+                f.write(image_bytes)
+            
+            # Salvar no banco de dados
+            products = Products(name=name, image_filename=filename, user_id=current_user.id)
+            db.session.add(products)
+            db.session.commit()
+            
+            return redirect(url_for('main.home'))
+        
+    return render_template('new_product.html')
