@@ -1,32 +1,48 @@
 <!DOCTYPE html>
+
 <html lang="pt-br">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Novo Produto</title>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/new_product.css') }}">
+
 </head>
+
 <body>
 
     <div class="header">
+    
         <a href="{{ url_for('main.home') }}" onclick="return confirm('Voltar ao início?')">
             <span class="material-symbols-outlined">close</span>
         </a>
+    
         <h1>Novo Produto</h1>
+    
     </div>
 
-    <h1>Cadastro de Produto</h1>
     <form action="/get_new_product" method="POST">
-        <input type="text" name="name" placeholder="Nome do produto" required><br><br>
-        <video id="video" width="320" height="240" autoplay></video><br>
-        <button type="button" onclick="tirarFoto()">Tirar Foto</button><br><br>
-        <canvas id="canvas" width="320" height="240" style="display:none;"></canvas>
+    
+        <input type="text" class="input_name" name="name" placeholder="Nome do produto" required><br><br>
+    
+        <video id="video" autoplay playsinline></video><br>
+    
+        <button type="button" class="btn_foto" onclick="tirarFoto()">Tirar Foto</button><br><br>
+    
+        <canvas id="canvas" width="320" height="140" style="display:none;"></canvas>
+    
         <input type="hidden" name="image_data" id="image_data">
+    
         <button type="submit">Enviar</button>
+    
     </form>
 
     <script src="{{ url_for('static', filename='js/new_product.js') }}"></script>
+
 </body>
 
 </html>
+ 
