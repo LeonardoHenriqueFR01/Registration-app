@@ -4,6 +4,9 @@ __pycache__/
 *.pyo
 *.pyd
 
+
+app/static/uploads
+
 # Ambientes virtuais
 venv/
 .env
