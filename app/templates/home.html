@@ -18,76 +18,89 @@
 
         <header>
 
-            <form action="/search" method="GET" autocomplete="off">
+            <div class="name_user">
 
-                <input type="search" id="search" placeholder="Pesquisar produto">
+                <h1> {{ user.name }} </h1>
 
-            </form>
+            </div>
 
-            <div class="menu">
+            <div class="logout">
 
-                <a href="{{ url_for('main.index') }}" onclick="return confirm('Deseja sair da sessão?')">
-                    <button>
-                        <span class="material-symbols-outlined">Logout</span>
+                <a href="#">
+
+                    <button onclick="return confirm('Deseja fechar sessão?')">
+
+                        <span class="material-symbols-outlined">logout</span>
+
                     </button>
+
                 </a>
 
             </div>
 
         </header>
 
-        <section class="status-product">
+        <section class="search">
 
-            <p id="first">PRODUTOS CADASTRADOS (0)</p>
+            <form action="#" method="GET" autocomplete="off">
 
-            <p id="second">VENCIMENTO EM 20 DIAS (0)</p>
+                <div class="row">
 
-            <p id="thirt">VENCIMENTO EM 7 DIAS (0)</p>
+                    <input type="search" name="search" id="search">
+                    
+                    <label for="search">Buscar produto</label>
+                
+                </div>
+
+            </form>
 
         </section>
 
-        <section class="products">
+        <a href="{{ url_for('main.new_product') }}">
+            <button class="btn_fixed">
+                <span class="material-symbols-outlined">+</span>
+            </button>
+        </a>
 
-            <article class="header">
+        <section class="status">
 
-                <h1>Produtos Cadastrados:</h1>
+            <p>Produtos cadastrados: [ 0 ]</p>
+            <p>Vencimento em 20 dias: [ 0 ]</p>
+            <p>Vencimento em 10 dias: [ 0 ]</p>
 
-                <a href="{{ url_for('main.new_product') }}">
-                    <button>Cadastrar</button>
-                </a>
+        </section>
 
-            </article>
+        <section class="products_box">
 
-            <section class="filter">
+            <div class="image">
 
-                <span class="material-symbols-outlined">Event_list</span>
+                <img src="../static/imagens/pexels-pixabay-266706.jpg" width="130px" height="100px" alt="">
 
-            </section>
+            </div>
 
-            {% for product in products %}
-                <article class="box-product">
-                    <img src="{{ url_for('static', filename='uploads/' ~ product.image_filename) }}" alt="Imagem do Produto">
-                    
-                    <div class="info-product">
-                        <div class="name">
-                            <h1>Nome:</h1>
-                            <p>{{ product.name }}</p>
-                        </div>
-            
-                        <div class="validade">
-                            <h1>Validade:</h1>
-                            <p>{{ product.product_value }}</p>
-                        </div>
-            
-                        <div class="res-dias">
-                            <h1>Dias restantes:</h1>
-                            <p>
-                                <p>Teste</p>
-                            </p>
-                        </div>
-                    </div>
-                </article>
-            {% endfor %}
+            <div class="info">
+
+                <div class="column_one">
+
+                    <p>11 de jun. de 2025</p>
+
+                    <p>10 dias</p>
+
+                </div>
+
+                <div class="column_two">
+
+                    <p>Biscoito Doce de Leite Maltado Piraque de Cooo 132g - GPA Marques</p>
+
+                </div>
+
+                <div class="column_three">
+
+                    <p>123313131312</p>
+
+                </div>
+
+            </div>
 
         </section>
 

@@ -21,7 +21,7 @@ def index():
 @login_required
 def home():
     products = Products.query.filter_by(user_id=current_user.id).all()
-    return render_template('home.html', products=products)
+    return render_template('home.html', products=products, user=current_user)
     
 # Rota para página de cadastro de produtos
 @main.route('/new_product')

@@ -6,8 +6,8 @@
 }
 
 :root {
-    --fist-color: #0077ff;
-    --second-color: #ffffff;
+    --fist-color: #00A7E1;
+    --second-color: #EDF2EF;
     --thirt-color: #fffb00;
     --room-color: #ff0000;
     --five-color: #08c908;
@@ -17,212 +17,125 @@
 @media (max-width: 786px) {
 
     body {
-        background-color: var(--six-color);
+        background-color: #fff;
     }
 
-    /* Configurações do header */
-    main > header {
-        width: 100%;
-        padding: .7em;
+   /* Configurações header */
 
+   main > header {
         display: flex;
         align-items: center;
         justify-content: space-between;
 
-        background-color: var(--fist-color);
+        padding: .7em;
     }
 
-    /* Header Menu Hamburger */
+    main > header > .logout > a > button {
+        background-color: transparent;
+        border: none;
 
-    main > header > .menu {
+        padding: .4em;
+    }
+    
+    main > header > .logout > a > button > span {
+        color: var(--six-color);
+    }
+
+    /* Configurações search */
+
+    main > .search > form {
+
+    }
+
+    .row {
         position: relative;
     }
 
-    main > header > .menu > span {
-        font-size: 2.5em;
-        cursor: pointer;
-
-        color: var(--second-color);
-    }
-
-    main > header > .menu > .menu-info {
-        position: absolute;
-        right: 0px;
-        transform: translateY(50%);
-        padding: .6em;
-        border-radius: 7px;
-
-        display: none;
-
-        background-color: #ffffffde;
-        backdrop-filter: blur(1px);
-    }
-
-    main > header > .menu > .menu-info > ul {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-    main > header > .menu > .menu-info > ul > li{
-        list-style: none;
-        font-size: 1.4em;
-        font-weight: bold;
-        margin-bottom: 7px;
-    }
-
-    main > header > .menu > .menu-info > ul > li > a {
-        text-decoration: none;
-
-        color: var(--fist-color);
-    }
-
-    main>header>form {
-        width: 87%;
-
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    main>header>form>input {
-        width: 95%;
-        padding: .5em;
-        font-size: 1em;
-        border-radius: 20px;
-        border: none;
-        outline: none;
-    }
-
-    main > header > form > button {
-        height: 40px;
-        width: 40px;
-        border-radius: 50%;
-        border: none;
-        cursor: pointer;
-        margin-left: 10px;
-    }
-
-    /* Configurações status product */
-    main>.status-product {
+    .row > input {
         width: 100%;
-
-        display: flex;
-        flex-direction: column;
-    }
-
-    main>.status-product>p {
-        text-align: center;
-        font-size: 1em;
-        font-weight: bold;
         padding: .3em;
-        margin-top: 10px;
+        font-size: 1.5em;
+        outline: none;
+
+        border: 1.3px solid var(--six-color);
+        background-color: transparent;
     }
 
-    #first {
-        background-color: var(--five-color);
+    .row > input:focus {
+        border: 1.7px solid var(--fist-color);
     }
 
-    #second {
-        background-color: var(--thirt-color);
+    .row > label {
+        position: absolute;
+        top: 30%;
+        left: 35%;
+        transform: translateY(-100%);
+
+        padding: .3em;
+
+        background-color: #fff;
+        color: #999;
     }
 
-    #thirt {
-        background-color: var(--room-color);
+    /* Configurações button fixed */
+
+    .btn_fixed {
+        position: fixed;
+
+        width: 60px;
+        height: 60px;
+        padding: .3em;
+        border-radius: 50%;
+
+        bottom: 20px;
+        right: 20px;
+
+        background-color: var(--six-color);
+        color: var(--second-color);
     }
 
-    /* Configurações header de products */
-    main > .products {
+    /* Configurações status */
+
+    main > .status {
         padding: .5em;
+        text-align: center;
     }
 
-    main > .products > .header {
-        padding: .5em;
+    /* Configurações products_box */
 
+    main > .products_box {
         display: flex;
         align-items: center;
         justify-content: space-between;
-
-        background-color: var(--fist-color);
+    
+        background-color: #fff;
+        box-shadow: 0px 0px 5px #0000002d;
     }
 
-    main > .products > .header > h1 {
-        color: var(--second-color);
-    }
-
-    main > .products > .header > a > button {
-        font-size: 1em;
-        font-weight: bold;
+    main > .products_box > .image {
         padding: .5em;
-        border: none;
-        border-radius: 7px;
-        cursor: pointer;
-
-        background-color: var(--five-color);
-        color: var(--second-color);
     }
 
-    /* Configurações filter */
-    main > .products > .filter {
-        width: 100%;
-        margin-top: 10px;
-        padding: .5em;
-
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-    }
-
-    main > .products > .filter > span {
-        color: var(--second-color);
-        
-        cursor: pointer;
-    }
-
-    /* Configurações box-product */
-    main > .products > .box-product {
-        padding: .4em;
-        margin-top: 10px;
-        border-radius: 5px;
-
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        background-color: var(--second-color);
-        border: 5px solid var(--fist-color);
-    }
-
-    main > .products > .box-product > img {
-        width: 140px;
-        height: 120px;
-    }
-
-    main > .products > .box-product > .info-product {
+    main > .products_box > .info {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        justify-content: center;
+        gap: 10px;
+
+        padding: .5em;
+
+        color: #999;
     }
 
-    main > .products > .box-product > .info-product > .name, .validade, .res-dias {
+    main > .products_box > .info > .column_one {
         display: flex;
         align-items: center;
-        justify-content: center;
-
-        margin-bottom: 7px;
+        justify-content: space-between;
     }
 
-    main > .products > .box-product > .info-product > .name > h1, .validade > h1, .res-dias > h1 {
-        font-size: 1.2em;
-        margin-right: 7px;
+    main > .products_box > .info > .column_three > p {
+        text-transform: none;
 
-        color: var(--fist-color);
-    }
-
-    main > .products > .box-product > .info-product > .name > p, .validade > p, .res-dias > p {
-        font-size: 1em;
+        color: #999;
     }
 
 }
