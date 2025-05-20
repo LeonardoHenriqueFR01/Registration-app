@@ -1,9 +1,9 @@
 from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS
 from dotenv import load_dotenv
 import os
-
 
 load_dotenv()
 
@@ -20,6 +20,8 @@ def create_app():
 
     db.init_app(app)
     login_manager.init_app(app)
+
+    CORS(app)
 
     from .routes import main
     app.register_blueprint(main)

@@ -1,0 +1,157 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+:root {
+    --fist-color: #000;
+    --second-color: #fa4545;
+    --thirt-color: #fff;
+    --room-color: #00aeff;
+}
+
+@media (max-width: 786px) {
+    body {
+        background-color: var(--fist-color);
+    }
+
+    /* Configurações mensagem de error */
+
+    .error {
+        text-align: center;
+        padding: 1em;
+
+        background-color: var(--second-color);
+        color: var(--thirt-color);
+    }
+
+    .error > p {
+        font-weight: bold;
+    }
+
+    /* Configurações header */
+
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    
+        padding: .5em;
+
+        background-color: var(--thirt-color);
+    }
+
+    .header > .btn_voltar > a > button {
+        background-color: transparent;
+        color: var(--fist-color);
+
+        border: none;
+    }
+
+    .header > .pencil > button {
+        background-color: transparent;
+        color: var(--fist-color);
+
+        border: none;
+    }
+
+    /* Configurações mensagem de status */
+
+    #mensagem {
+        padding: 1em;
+        text-align: center;
+
+        color: var(--thirt-color);
+    }
+
+    /* Configurações form */
+
+    form {
+        display: flex;
+        flex-direction: column;
+    
+        margin-top: 40px;
+    }
+
+    form > button {
+        width: 100%;
+        padding: .3em;
+        font-size: 1.3em;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 5px;
+        border: none;
+    }
+
+    /* Configurações input moderno */
+
+    .row {
+        position: relative;
+    }
+
+    .row > input {
+        width: 100%;
+        padding: .5em;
+        font-size: 1.3em;
+        outline: none;
+        margin-bottom: 20px;
+        
+        background-color: transparent;
+        color: var(--thirt-color);
+        border: 1px solid var(--room-color);
+    }
+
+    .row > label {
+        position: absolute;
+        left: 15px;
+        top: 30%;
+        transform: translateY(-50%);
+        padding: .3em;
+
+        color: #999;
+        background-color: var(--fist-color);
+    }
+
+    .row > input:focus + label,
+    .row > input:not(:placeholder-shown) + label {
+        transition: .5s ease-in-out;
+
+        top: 0;
+        color: var(--room-color);
+    }
+
+    /* Button para abrir a camera e tirar foto */
+
+    .btn_camera {
+        text-align: center;
+        padding: 1em;
+    }
+
+    .btn_camera > button {
+        padding: .5em;
+        font-size: 1em;
+        font-weight: bold;
+        cursor: pointer;
+        border: none;
+        border-radius: 2px;
+        
+        background-color: var(--room-color);
+        color: var(--thirt-color);
+    }
+
+    #tirar_foto {
+        padding: .5em;
+        margin: 10px;
+        font-size: 1em;
+        font-weight: bold;
+        cursor: pointer;
+        border: none;
+        border-radius: 2px;
+
+        background-color: var(--room-color);
+        color: var(--thirt-color);
+    }
+
+}

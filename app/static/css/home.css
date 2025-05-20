@@ -16,10 +16,6 @@
 
 @media (max-width: 786px) {
 
-    body {
-        background-color: #fff;
-    }
-
    /* Configurações header */
 
    main > header {
@@ -28,6 +24,10 @@
         justify-content: space-between;
 
         padding: .7em;
+    }
+
+    main > header > .logout > a {
+        text-decoration: none;
     }
 
     main > header > .logout > a > button {
@@ -39,42 +39,6 @@
     
     main > header > .logout > a > button > span {
         color: var(--six-color);
-    }
-
-    /* Configurações search */
-
-    main > .search > form {
-
-    }
-
-    .row {
-        position: relative;
-    }
-
-    .row > input {
-        width: 100%;
-        padding: .3em;
-        font-size: 1.5em;
-        outline: none;
-
-        border: 1.3px solid var(--six-color);
-        background-color: transparent;
-    }
-
-    .row > input:focus {
-        border: 1.7px solid var(--fist-color);
-    }
-
-    .row > label {
-        position: absolute;
-        top: 30%;
-        left: 35%;
-        transform: translateY(-100%);
-
-        padding: .3em;
-
-        background-color: #fff;
-        color: #999;
     }
 
     /* Configurações button fixed */
@@ -107,9 +71,13 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-    
+
+        margin-bottom: 15px;
+        width: 95%;
+        margin-left: 10px;
+
         background-color: #fff;
-        box-shadow: 0px 0px 5px #0000002d;
+        box-shadow: 0px 0px 5px var(--fist-color);
     }
 
     main > .products_box > .image {
@@ -132,10 +100,26 @@
         justify-content: space-between;
     }
 
+    main > .products_box > .info > .column_two > p {
+        color: #000;
+    }
+
     main > .products_box > .info > .column_three > p {
         text-transform: none;
 
         color: #999;
+    }
+
+    main > .products_box > .btn_delete > a > button {
+        background-color: transparent;
+        color: var(--six-color);
+
+        border: none;
+        padding: 1em;
+    }
+
+    main > .products_box > .btn_delete > a > button > span {
+        font-size: 3em;
     }
 
 }

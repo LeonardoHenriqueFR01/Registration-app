@@ -14,7 +14,8 @@
 
 <body>
 
-    <main>
+
+    <main id="home">
 
         <header>
 
@@ -26,86 +27,71 @@
 
             <div class="logout">
 
-                <a href="#">
-
-                    <button onclick="return confirm('Deseja fechar sessão?')">
-
-                        <span class="material-symbols-outlined">logout</span>
-
+                <a href="{{ url_for('main.add_product') }}">
+                    <button>
+                        <span class="material-symbols-outlined">Add_Card</span>
                     </button>
+                </a>
 
+                <a href="{{ url_for('main.search_product') }}">
+                    <button>
+                        <span class="material-symbols-outlined">Search</span>
+                    </button>
+                </a>
+
+                <a href="{{ url_for('main.index') }}">
+                    <button onclick="return confirm('Deseja fechar sessão?')">
+                        <span class="material-symbols-outlined">logout</span>
+                    </button>
                 </a>
 
             </div>
 
         </header>
 
-        <section class="search">
-
-            <form action="#" method="GET" autocomplete="off">
-
-                <div class="row">
-
-                    <input type="search" name="search" id="search">
-                    
-                    <label for="search">Buscar produto</label>
-                
-                </div>
-
-            </form>
-
-        </section>
-
         <a href="{{ url_for('main.new_product') }}">
             <button class="btn_fixed">
-                <span class="material-symbols-outlined">+</span>
+                <span class="material-symbols-outlined">Add</span>
             </button>
         </a>
 
         <section class="status">
 
-            <p>Produtos cadastrados: [ 0 ]</p>
-            <p>Vencimento em 20 dias: [ 0 ]</p>
-            <p>Vencimento em 10 dias: [ 0 ]</p>
+            <p>Produtos cadastrados: [ {{ total_produtos }} ]</p>
+            <p>Vencimento em 20 dias: [ {{ vencem_em_20_dias }} ]</p>
+            <p>Vencimento em 10 dias: [ {{ vencem_em_10_dias }} ]</p>
+        
+        </section>        
 
-        </section>
+        {% for produto in produtos %}
+            <section class="products_box">
 
-        <section class="products_box">
+                <div class="image">
+                    <img src="{{ url_for('static', filename=produto.imagem.split('static/')[1]) }}" width="130px" height="100px" alt="Imagem do produto">
+                </div>
 
-            <div class="image">
+                <div class="info">
 
-                <img src="../static/imagens/pexels-pixabay-266706.jpg" width="130px" height="100px" alt="">
+                    <div class="column_one">
+                        <p>{{ produto.validade }}</p>
+                        <p>{{ produto.dias_restantes }} Dias</p>
+                    </div>
 
-            </div>
+                    <div class="column_two">
+                        <p>{{ produto.nome }}</p>
+                    </div>
 
-            <div class="info">
-
-                <div class="column_one">
-
-                    <p>11 de jun. de 2025</p>
-
-                    <p>10 dias</p>
+                    <div class="column_three">
+                        <p>{{ produto.codigo }}</p>
+                    </div>
 
                 </div>
 
-                <div class="column_two">
-
-                    <p>Biscoito Doce de Leite Maltado Piraque de Cooo 132g - GPA Marques</p>
-
-                </div>
-
-                <div class="column_three">
-
-                    <p>123313131312</p>
-
-                </div>
-
-            </div>
-
-        </section>
+            </section>
+        {% endfor %}
 
     </main>
-
+        
     <script src="../static/js/index.js"></script>
 
 </body>

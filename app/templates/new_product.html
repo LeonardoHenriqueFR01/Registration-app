@@ -1,50 +1,54 @@
 <!DOCTYPE html>
-
 <html lang="pt-br">
-
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Novo Produto</title>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Novo Produto</title>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/new_product.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/new_product.css') }}" />
 
+  <script src="https://unpkg.com/html5-qrcode"></script>
 </head>
 
 <body>
+  <main>
+    <section>
+      <div class="btn_manual">
+        <!-- Botão para abrir campo manual -->
+        <button id="abrirManual">
+          Escrever Manualmente
+        </button>
+      </div>
 
-    <div class="header">
-    
-        <a href="{{ url_for('main.home') }}" onclick="return confirm('Voltar ao início?')">
-            <span class="material-symbols-outlined">close</span>
-        </a>
-    
-        <h1>Novo Produto</h1>
-    
-    </div>
+      <!-- Campo manual oculto -->
+      <div id="manualInput" style="display: none; margin-top: 10px;">
+        <label for="codigoManual">Digite o código de barras:</label><br />
+        <input type="text" id="codigoManual" placeholder="Digite o código" />
+        <button onclick="buscarProdutoManual()">Buscar</button>
+      </div>
 
-    <form action="/get_new_product" method="POST">
-    
-        <input type="text" class="input_name" name="name" placeholder="Nome do produto" required><br><br>
- 
-        <input type="date" class="input_date" name="date" id="date" required>
+      <!-- Status da leitura -->
+      <div id="status" style="margin-top: 10px;">Carregando produtos...</div>
 
-        <video id="video" autoplay playsinline></video><br>
-    
-        <button type="button" class="btn_foto" onclick="tirarFoto()">Tirar Foto</button><br><br>
-    
-        <canvas id="canvas" width="320" height="140" style="display:none;"></canvas>
-    
-        <input type="hidden" name="image_data" id="image_data">
-    
-        <button type="submit">Enviar</button>
-    
-    </form>
+      <!-- Scanner -->
+      <div id="camera-container" style="margin-top: 20px;">
+        <div id="reader" style="width: 100%; max-width: 400px; margin: auto;"></div>
+      </div>
 
-    <script src="{{ url_for('static', filename='js/new_product.js') }}"></script>
+      <!-- Nome do produto -->
+      <div id="produto" style="margin-top: 20px; font-weight: bold;"></div>
+      <img id="imagemProduto" src="" alt="Imagem do Produto" style="display:none; max-width: 200px; margin-top: 10px;" />
 
+      <!-- Formulário de validade -->
+      <form id="formValidade" style="display: none; margin-top: 20px;">
+        <label for="validade">Validade do produto:</label><br />
+        <input type="date" id="validade" required />
+        <button type="submit">Salvar validade</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/new_product.js') }}"></script>
 </body>
-
 </html>
- 

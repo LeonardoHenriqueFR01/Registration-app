@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastrar Produto</title>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/add_product.css') }}">
+  <script src="https://unpkg.com/html5-qrcode"></script>
+</head>
+
+<body>
+
+  <div class="header">
+    <div class="btn_voltar">
+      <a href="{{ url_for('main.home') }}">
+        <button>
+          <span class="material-symbols-outlined">Arrow_back</span>
+        </button>
+      </a>
+    </div>
+
+    <h1>Novo Produto</h1>
+
+    <div class="pencil">
+      <button id="abrirManual" onclick="body_color()">
+        <span class="material-symbols-outlined">Edit_Square</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Scanner -->
+  <div id="reader"></div>
+
+  <!-- Mensagem de status -->
+  <div id="mensagem"></div>
+
+  <!-- Formulário para cadastro -->
+  <form id="formProduto" method="POST" action="{{ url_for('main.get_new_product') }}" enctype="multipart/form-data" style="display: none;">
+    <div class="row">
+      <input type="text" id="codigo" name="codigo" required placeholder=" " />
+      <label for="codigo">Código</label>
+    </div>
+
+    <div class="row">
+      <input type="text" id="nome" name="nome" required placeholder=" " />
+      <label for="nome">Nome</label>
+    </div>
+
+    <!-- Botão para abrir a câmera -->
+    <div class="btn_camera">
+      <button type="button" id="open_camera" onclick="abrirCamera()">Abrir câmera</button>
+    </div>
+
+    <!-- Câmera e captura -->
+    <div id="cameraContainer" style="display: none; text-align: center;">
+      <video id="video" width="320" height="240" autoplay playsinline></video>
+      <br>
+      <button type="button" onclick="tirarFoto()" id="tirar_foto">Tirar Foto</button>
+      <canvas id="canvas" width="320" height="240" style="display: none;"></canvas>
+    </div>
+
+    <!-- Campo oculto para imagem -->
+    <input type="hidden" name="image_data" id="image_data">
+
+    <button type="submit">Cadastrar</button>
+  </form>
+
+  {% if erro %}
+    <div class="error">
+      <p>{{ erro }}</p>
+    </div>
+  {% endif %}
+
+  <script src="{{ url_for('static', filename='js/add_product.js') }}"></script>
+</body>
+
+</html>
