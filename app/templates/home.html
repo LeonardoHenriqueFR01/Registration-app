@@ -14,7 +14,6 @@
 
 <body>
 
-
     <main id="home">
 
         <header>
@@ -63,18 +62,29 @@
         
         </section>        
 
+    {% if produtos %}
         {% for produto in produtos %}
             <section class="products_box">
-
                 <div class="image">
-                    <img src="{{ url_for('static', filename=produto.imagem.split('static/')[1]) }}" width="130px" height="100px" alt="Imagem do produto">
+                    <img src="{{ produto.imagem }}" width="115px" height="100px" alt="Imagem do produto">
                 </div>
 
                 <div class="info">
-
                     <div class="column_one">
                         <p>{{ produto.validade }}</p>
-                        <p>{{ produto.dias_restantes }} Dias</p>
+                        <p>
+                            {% if produto.dias_restantes < 0 %}
+                                <span style="color: red;">{{ produto.dias_restantes | abs }} dias</span>
+                            {% elif produto.dias_restantes == 0 %}
+                                <span style="color: orange;">Vence hoje</span>
+                            {% elif produto.dias_restantes <= 10 %}
+                                <span style="color: orange;">{{ produto.dias_restantes }} dias</span>
+                            {% elif produto.dias_restantes <= 20 %}
+                                <span style="color: #DAA520;">{{ produto.dias_restantes }} dias</span>
+                            {% else %}
+                                <span style="color: green;">{{ produto.dias_restantes }} dias</span>
+                            {% endif %}
+                        </p>
                     </div>
 
                     <div class="column_two">
@@ -84,11 +94,37 @@
                     <div class="column_three">
                         <p>{{ produto.codigo }}</p>
                     </div>
+                
+                    <div class="btn_s">
+                    
+                        <form action="#" method="POST" autocomplete="off">
+    
+                            <button id="btn_edit">
+                                <span class="material-symbols-outlined">Edit</span>
+                            </button>
+    
+                        </form>
+    
+                        <form action="{{ url_for('main.deletar_produto', codigo=produto.codigo) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este produto?');">
+                        
+                            <button type="submit" id="btn_delete">
+                                <span class="material-symbols-outlined">Delete</span>
+                            </button>
+                        
+                        </form>
+                    
+                    </div>
 
                 </div>
-
+                
             </section>
         {% endfor %}
+    
+    {% else %}
+        <p style="text-align: center; color: #777; margin-top: 20px;">
+            Nenhum produto cadastrado no momento.
+        </p>
+    {% endif %}
 
     </main>
         

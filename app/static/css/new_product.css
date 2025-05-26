@@ -41,9 +41,16 @@
   .btn_manual {
     display: flex;
     align-items: center;
-    justify-content: center;    
+    justify-content: space-between;    
 
     padding: .5em;
+  }
+
+  .btn_manual > a > button {
+    background-color: transparent;
+    color: var(--second-color);
+
+    border: none;
   }
 
   .btn_manual > button {
@@ -68,5 +75,64 @@
   #manualInput {
     text-align: center;
   }
+
+  /* Configurações imagem do produto e nome */
+
+  #produto {
+    text-align: center;
+  }
+
+  .photo_product {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .photo_product > .imagem_product {
+    width: 220px;
+    height: 140px;
+  }
+
+  /********/
+
+  .form-modern {
+    display: none;
+    margin-top: 20px;
+    text-align: left;
+  }
+  
+  .input-group {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .calendar-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+  }
+  
+  .input-group input[type="date"] {
+    width: 100%;
+    padding: 12px 12px 12px 36px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    font-size: 16px;
+    background-color: #fff;
+    appearance: none;
+  }
+  
+  .input-group label {
+    position: absolute;
+    left: 36px;
+    top: 10px;
+    font-size: 12px;
+    color: #666;
+    pointer-events: none;
+    transition: all 0.2s ease;
+  }  
 
 }

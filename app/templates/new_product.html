@@ -15,6 +15,13 @@
   <main>
     <section>
       <div class="btn_manual">
+
+        <a href="{{ url_for('main.home') }}">
+          <button>
+            <span class="material-symbols-outlined">Arrow_back</span>
+          </button>
+        </a>
+
         <!-- Botão para abrir campo manual -->
         <button id="abrirManual">
           Escrever Manualmente
@@ -38,13 +45,18 @@
 
       <!-- Nome do produto -->
       <div id="produto" style="margin-top: 20px; font-weight: bold;"></div>
-      <img id="imagemProduto" src="" alt="Imagem do Produto" style="display:none; max-width: 200px; margin-top: 10px;" />
+      <div class="photo_product">
+        <img class="imagem_product" id="imagemProduto" src="" alt="Imagem do Produto" style="display:none; margin-top: 10px;" />
+      </div>
 
       <!-- Formulário de validade -->
-      <form id="formValidade" style="display: none; margin-top: 20px;">
-        <label for="validade">Validade do produto:</label><br />
-        <input type="date" id="validade" required />
-        <button type="submit">Salvar validade</button>
+      <form id="formValidade" class="form-modern">
+        <div class="input-group">
+          <span class="calendar-icon">📅</span>
+          <input type="date" id="validade" required />
+          <label for="validade">Validade</label>
+        </div>
+        <button type="submit">Novo Produto</button>
       </form>
     </section>
   </main>

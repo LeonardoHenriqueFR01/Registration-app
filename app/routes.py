@@ -29,22 +29,27 @@ def home():
     total_produtos = 0
     vencem_em_20_dias = 0
     vencem_em_10_dias = 0
+    produtos_vazios = True  # Assume que está vazio
 
     if os.path.exists(caminho_json):
-        with open(caminho_json, 'r', encoding='utf-8') as f:
-            produtos = json.load(f)
+        try:
+            with open(caminho_json, 'r', encoding='utf-8') as f:
+                produtos = json.load(f)
+                produtos_vazios = not produtos  # True se lista estiver vazia
 
-        hoje = datetime.today().date()
-        for produto in produtos:
-            validade = datetime.strptime(produto["validade"], "%Y-%m-%d").date()
-            dias_restantes = (validade - hoje).days
-            produto["dias_restantes"] = dias_restantes
+            hoje = datetime.today().date()
+            for produto in produtos:
+                validade = datetime.strptime(produto["validade"], "%Y-%m-%d").date()
+                dias_restantes = (validade - hoje).days
+                produto["dias_restantes"] = dias_restantes
 
-            total_produtos += 1
-            if dias_restantes <= 20:
-                vencem_em_20_dias += 1
-            if dias_restantes <= 10:
-                vencem_em_10_dias += 1
+                total_produtos += 1
+                if dias_restantes <= 20:
+                    vencem_em_20_dias += 1
+                if dias_restantes <= 10:
+                    vencem_em_10_dias += 1
+        except json.JSONDecodeError:
+            produtos_vazios = True  # caso o arquivo esteja mal formatado
 
     return render_template(
         'home.html',
@@ -53,7 +58,8 @@ def home():
         user=current_user,
         total_produtos=total_produtos,
         vencem_em_20_dias=vencem_em_20_dias,
-        vencem_em_10_dias=vencem_em_10_dias
+        vencem_em_10_dias=vencem_em_10_dias,
+        produtos_vazios=produtos_vazios  # variável nova
     )
 
 # Página de bipar produto (câmera)
@@ -208,8 +214,9 @@ def salvar_produto_usuario():
     codigo = dados.get('codigo')
     nome = dados.get('nome')
     validade = dados.get('validade')
+    imagem_url = dados.get('imagem_url')  # agora recebemos um link da imagem
 
-    if not (codigo and nome and validade):
+    if not (codigo and nome and validade and imagem_url):
         return jsonify({'erro': 'Dados incompletos'}), 400
 
     try:
@@ -221,20 +228,38 @@ def salvar_produto_usuario():
     for p in produtos_usuario:
         if p['codigo'] == codigo:
             p['validade'] = validade
-            p['imagem'] = f"static/uploads/{codigo}.png"
+            p['imagem'] = imagem_url  # atualiza para o novo link
             break
-
     else:
-        caminho_imagem = f"static/uploads/{codigo}.png"  
-
         produtos_usuario.append({
             'codigo': codigo,
             'nome': nome,
             'validade': validade,
-            'imagem': caminho_imagem
+            'imagem': imagem_url
         })
 
     with open(CAMINHO_USUARIO, 'w', encoding='utf-8') as f:
         json.dump(produtos_usuario, f, ensure_ascii=False, indent=2)
 
     return jsonify({'mensagem': 'Produto salvo com sucesso'})
+
+# Rota para deletar um produto
+@main.route('/deletar_produto/<codigo>', methods=['POST'])
+@login_required
+def deletar_produto(codigo):
+    caminho_json = os.path.join(current_app.root_path, 'data', 'produtos_usuario.json')
+
+    try:
+        with open(caminho_json, 'r', encoding='utf-8') as f:
+            produtos = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        produtos = []
+
+    # Filtra os produtos, removendo o que tem o código igual
+    produtos = [p for p in produtos if p['codigo'] != codigo]
+
+    # Salva o novo JSON sem o produto
+    with open(caminho_json, 'w', encoding='utf-8') as f:
+        json.dump(produtos, f, ensure_ascii=False, indent=2)
+
+    return redirect(url_for('main.home'))

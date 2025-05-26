@@ -81,7 +81,11 @@
     }
 
     main > .products_box > .image {
-        padding: .5em;
+        padding: .3em;
+    }
+
+    main > .products_box > .image > img {
+        border-radius: 10px;
     }
 
     main > .products_box > .info {
@@ -89,7 +93,7 @@
         flex-direction: column;
         gap: 10px;
 
-        padding: .5em;
+        padding: .3em;
 
         color: #999;
     }
@@ -110,16 +114,30 @@
         color: #999;
     }
 
-    main > .products_box > .btn_delete > a > button {
-        background-color: transparent;
-        color: var(--six-color);
+    /* Configurações buttons editar e excluir */
 
-        border: none;
-        padding: 1em;
+    main > .products_box > .info > .btn_s {
+        display: none;
+        gap: 20px;
+
+        margin-left: 140px;
     }
 
-    main > .products_box > .btn_delete > a > button > span {
-        font-size: 3em;
+    main > .products_box > .info > .btn_s > form > button {
+        background-color: transparent;
+        color: var(--six-color);
+        border: 1px solid var(--six-color);
+
+        border-radius: 10px;
+        padding: .3em;
+    }
+
+    #btn_edit {
+        color: var(--fist-color);
+    }
+ 
+    #btn_delete {
+        color: var(--room-color);        
     }
 
 }

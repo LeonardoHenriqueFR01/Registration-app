@@ -1,14 +1,26 @@
 [
   {
-    "codigo": "7896417294230",
-    "nome": "Biscoito Doce de leite maltado Piraque de coco 132G - GPA marques",
-    "validade": "2025-05-22",
-    "imagem": "static/uploads/7896417294230.png"
+    "codigo": "7896024761408",
+    "nome": "Biscoito Piraque recheado supreme limão",
+    "validade": "2025-06-08",
+    "imagem": "https://images.openfoodfacts.org/images/products/789/602/476/1408/front_en.3.400.jpg"
   },
   {
-    "codigo": "7896336005917",
-    "nome": "Santa Elena paçoca original 15g",
-    "validade": "2025-05-31",
-    "imagem": "static/uploads/7896336005917.png"
+    "codigo": "7896024761842",
+    "nome": "Biscoito Cookies Piraque - Goiabinha Original 80g",
+    "validade": "2025-06-15",
+    "imagem": "/static/uploads/7896024761842.png"
+  },
+  {
+    "codigo": "7896024761828",
+    "nome": "Biscoito Cookies Piraque - Leite Maltado Black 80g",
+    "validade": "2025-06-05",
+    "imagem": "/static/uploads/7896024761828.png"
+  },
+  {
+    "codigo": "7891203058164",
+    "nome": "Biscoito Panco - Biscoito de Leite 200g",
+    "validade": "2025-06-16",
+    "imagem": "/static/uploads/7891203058164.png"
   }
 ]
