@@ -36,7 +36,29 @@
       width: 100%;
   }
       
-  /* button abrir manual */
+  /* button abrir código manual */
+
+  .button_manual > input {
+    width: 200px;
+    padding: .3em;
+    font-size: 1em;
+    outline: none;
+
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid var(--second-color);
+  }
+
+  .button_manual > button {
+    padding: .3em;
+    font-size: 1em;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+
+    background-color: var(--second-color);
+    color: var(--six-color);
+  }
 
   .btn_manual {
     display: flex;
@@ -49,7 +71,7 @@
   .btn_manual > a > button {
     background-color: transparent;
     color: var(--second-color);
-
+    
     border: none;
   }
 

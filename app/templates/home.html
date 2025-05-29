@@ -38,11 +38,12 @@
                     </button>
                 </a>
 
-                <a href="{{ url_for('main.index') }}">
-                    <button onclick="return confirm('Deseja fechar sessão?')">
-                        <span class="material-symbols-outlined">logout</span>
+                <a href="{{ url_for('main.index') }}" onclick="confirmarLogout(event, this.href)">
+                    <button type="button">
+                      <span class="material-symbols-outlined">logout</span>
                     </button>
-                </a>
+                  </a>
+                  
 
             </div>
 
@@ -64,7 +65,46 @@
 
     {% if produtos %}
         {% for produto in produtos %}
+
+            <section class="circou_info">
+
+                <p style="display: flex; align-items: center; gap: 8px;">
+                    {% if produto.dias_restantes < 0 %}
+                        <span style="width: 10px; height: 10px; background-color: red; border-radius: 50%; display: inline-block;"></span>
+                        <span style="color: #999;">{{ produto.dias_restantes | abs }} dias</span>
+                    {% elif produto.dias_restantes == 0 %}
+                        <span style="width: 10px; height: 10px; background-color: red; border-radius: 50%; display: inline-block;"></span>
+                        <span style="color: #999;">Vence hoje</span>
+                    {% elif produto.dias_restantes <= 10 %}
+                        <span style="width: 10px; height: 10px; background-color: orange; border-radius: 50%; display: inline-block;"></span>
+                        <span style="color: #999;">{{ produto.dias_restantes }} dias restantes</span>
+                    {% elif produto.dias_restantes <= 20 %}
+                        <span style="width: 10px; height: 10px; background-color: #08c908; border-radius: 50%; display: inline-block;"></span>
+                        <span style="color: #999;">{{ produto.dias_restantes }} dias restantes</span>
+                    {% else %}
+                        <span style="width: 10px; height: 10px; background-color: green; border-radius: 50%; display: inline-block;"></span>
+                        <span style="color: #999;">{{ produto.dias_restantes }} dias restantes</span>
+                    {% endif %}
+                </p>
+
+                <div class="btn_delete">
+
+                    <form action="{{ url_for('main.deletar_produto', codigo=produto.codigo) }}"
+                        method="POST"
+                        onsubmit="confirmarExclusao(event, this)">
+
+                        <button type="submit" id="btn_delete">
+                            <span class="material-symbols-outlined">Delete</span>
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </section>
+            
             <section class="products_box">
+
                 <div class="image">
                     <img src="{{ produto.imagem }}" width="115px" height="100px" alt="Imagem do produto">
                 </div>
@@ -72,19 +112,6 @@
                 <div class="info">
                     <div class="column_one">
                         <p>{{ produto.validade }}</p>
-                        <p>
-                            {% if produto.dias_restantes < 0 %}
-                                <span style="color: red;">{{ produto.dias_restantes | abs }} dias</span>
-                            {% elif produto.dias_restantes == 0 %}
-                                <span style="color: orange;">Vence hoje</span>
-                            {% elif produto.dias_restantes <= 10 %}
-                                <span style="color: orange;">{{ produto.dias_restantes }} dias</span>
-                            {% elif produto.dias_restantes <= 20 %}
-                                <span style="color: #DAA520;">{{ produto.dias_restantes }} dias</span>
-                            {% else %}
-                                <span style="color: green;">{{ produto.dias_restantes }} dias</span>
-                            {% endif %}
-                        </p>
                     </div>
 
                     <div class="column_two">
@@ -104,14 +131,6 @@
                             </button>
     
                         </form>
-    
-                        <form action="{{ url_for('main.deletar_produto', codigo=produto.codigo) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este produto?');">
-                        
-                            <button type="submit" id="btn_delete">
-                                <span class="material-symbols-outlined">Delete</span>
-                            </button>
-                        
-                        </form>
                     
                     </div>
 
@@ -128,7 +147,7 @@
 
     </main>
         
-    <script src="../static/js/index.js"></script>
+    <script src="../static/js/home.js"></script>
 
 </body>
 

@@ -4,10 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Novo Produto</title>
-
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
   <link rel="stylesheet" href="{{ url_for('static', filename='css/new_product.css') }}" />
-
   <script src="https://unpkg.com/html5-qrcode"></script>
 </head>
 
@@ -15,7 +13,6 @@
   <main>
     <section>
       <div class="btn_manual">
-
         <a href="{{ url_for('main.home') }}">
           <button>
             <span class="material-symbols-outlined">Arrow_back</span>
@@ -29,10 +26,9 @@
       </div>
 
       <!-- Campo manual oculto -->
-      <div id="manualInput" style="display: none; margin-top: 10px;">
-        <label for="codigoManual">Digite o código de barras:</label><br />
+      <div class="button_manual" id="manualInput" style="display: none; margin-top: 10px;">
         <input type="text" id="codigoManual" placeholder="Digite o código" />
-        <button onclick="buscarProdutoManual()">Buscar</button>
+        <button type="button" onclick="buscarProdutoManual()">Buscar</button>
       </div>
 
       <!-- Status da leitura -->
@@ -45,12 +41,14 @@
 
       <!-- Nome do produto -->
       <div id="produto" style="margin-top: 20px; font-weight: bold;"></div>
+
+      <!-- Imagem do produto -->
       <div class="photo_product">
         <img class="imagem_product" id="imagemProduto" src="" alt="Imagem do Produto" style="display:none; margin-top: 10px;" />
       </div>
 
       <!-- Formulário de validade -->
-      <form id="formValidade" class="form-modern">
+      <form id="formValidade" class="form-modern" style="display: none;">
         <div class="input-group">
           <span class="calendar-icon">📅</span>
           <input type="date" id="validade" required />

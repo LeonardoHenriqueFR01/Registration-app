@@ -1,5 +1,6 @@
-const produtos = {}; // agora armazena objetos { nome, marca, quantidade }
-let ultimaImagem = ""; // 🆕 Guardar a URL da imagem do produto
+const produtos = {};
+let ultimaImagem = "";
+let scannerAtivo = true;
 
 document.addEventListener("DOMContentLoaded", () => {
   const status = document.getElementById("status");
@@ -17,7 +18,22 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   document.getElementById("abrirManual").addEventListener("click", () => {
+    // Exibe o input manual
     document.getElementById("manualInput").style.display = "block";
+
+    // Oculta o scanner
+    readerDiv.style.display = "none";
+
+    // Pausa o scanner se estiver ativo
+    if (scannerAtivo) {
+      reader.pause();
+      scannerAtivo = false;
+    }
+
+    // Torna o fundo da interface preto (corrigi para preto porque você tinha 'black' no background)
+    document.body.style.backgroundColor = "black";
+
+    // Atualiza a mensagem de status
     mostrarMensagem("Digite o código e clique em buscar.");
   });
 
@@ -52,15 +68,19 @@ document.addEventListener("DOMContentLoaded", () => {
   function iniciarScanner() {
     reader.start(
       { facingMode: { exact: "environment" } },
-      { fps: 10, qrbox: { width: 250, height: 150 } },
+      { fps: 15, qrbox: { width: 350, height: 150 } },
       (decodedText) => {
-        reader.stop().then(() => {
-          campoManual.value = decodedText;
-          buscarProduto(decodedText);
-          mostrarMensagem("");
-          readerDiv.style.display = "none";
-          formValidade.style.display = "block";
-        });
+        if (!scannerAtivo) return;
+        scannerAtivo = false;
+
+        campoManual.value = decodedText;
+        buscarProduto(decodedText);
+
+        mostrarMensagem("");
+        readerDiv.style.display = "none";
+        formValidade.style.display = "block";
+
+        reader.pause();
       },
       () => {}
     ).catch((err) => {
@@ -117,9 +137,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.buscarProdutoManual = function () {
     const codigo = campoManual.value.trim();
+    if (!codigo) {
+      mostrarMensagem("Por favor, digite um código.", "erro");
+      return;
+    }
     buscarProduto(codigo);
     formValidade.style.display = "block";
   };
+
+  campoManual.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      buscarProdutoManual();
+    }
+  });
 
   function salvarProduto(codigo, nomeProduto, validade) {
     mostrarMensagem("Salvando produto...");
@@ -146,7 +177,8 @@ document.addEventListener("DOMContentLoaded", () => {
         imagemProduto.style.display = "none";
         ultimaImagem = "";
         readerDiv.style.display = "block";
-        iniciarScanner();
+        reader.resume();
+        scannerAtivo = true;
       })
       .catch(err => {
         console.error("Erro ao salvar produto:", err);
@@ -173,8 +205,3 @@ document.addEventListener("DOMContentLoaded", () => {
     salvarProduto(codigo, nomeProduto, validade);
   });
 });
-
-function mostrarFormularioValidade() {
-  document.getElementById('formValidade').style.display = 'block';
-  document.getElementById('validade').focus();
-}

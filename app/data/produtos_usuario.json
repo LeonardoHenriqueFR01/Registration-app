@@ -19,8 +19,32 @@
   },
   {
     "codigo": "7891203058164",
-    "nome": "Biscoito Panco - Biscoito de Leite 200g",
-    "validade": "2025-06-16",
+    "nome": "Panco - Biscoito de Leite 200g",
+    "validade": "2025-06-27",
     "imagem": "/static/uploads/7891203058164.png"
+  },
+  {
+    "codigo": "7891962054100",
+    "nome": "Biscoito Cookie Tradicional Bauducco Pacote 100g",
+    "validade": "2025-07-21",
+    "imagem": "https://images.openfoodfacts.org/images/products/789/196/205/4100/front_en.37.400.jpg"
+  },
+  {
+    "codigo": "7896024761316",
+    "nome": "Biscoito Recheio Limão Piraquê Pacote 76g",
+    "validade": "2025-08-01",
+    "imagem": "https://images.openfoodfacts.org/images/products/789/602/476/1316/front_pt.3.400.jpg"
+  },
+  {
+    "codigo": "7896024761354",
+    "nome": "BISC RECH LEITE MALT CHOCO 85G PIRAQUE",
+    "validade": "2025-07-04",
+    "imagem": "https://images.openfoodfacts.org/images/products/789/602/476/1354/front_pt.3.400.jpg"
+  },
+  {
+    "codigo": "7896024720207",
+    "nome": "Piraque - snack queijinho assado 100 g",
+    "validade": "2025-06-06",
+    "imagem": "/static/uploads/7896024720207.png"
   }
 ]
