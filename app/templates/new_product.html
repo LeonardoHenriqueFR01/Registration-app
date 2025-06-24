@@ -6,7 +6,9 @@
   <title>Novo Produto</title>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
   <link rel="stylesheet" href="{{ url_for('static', filename='css/new_product.css') }}" />
-  <script src="https://unpkg.com/html5-qrcode"></script>
+  
+  <!-- Substituímos Quagga pelo Html5Qrcode -->
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
 </head>
 
 <body>
@@ -34,9 +36,9 @@
       <!-- Status da leitura -->
       <div id="status" style="margin-top: 10px;">Carregando produtos...</div>
 
-      <!-- Scanner -->
+      <!-- Scanner com Html5Qrcode -->
       <div id="camera-container" style="margin-top: 20px;">
-        <div id="reader" style="width: 100%; max-width: 400px; margin: auto;"></div>
+        <div id="reader" style="width: 100%; max-width: 400px; height: 300px; margin: auto;"></div>
       </div>
 
       <!-- Nome do produto -->
@@ -54,7 +56,9 @@
           <input type="date" id="validade" required />
           <label for="validade">Validade</label>
         </div>
-        <button type="submit">Novo Produto</button>
+        <div class="btn_new_product">
+          <button type="submit" class="new_product_btn">Novo Produto</button>
+        </div>
       </form>
     </section>
   </main>

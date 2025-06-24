@@ -7,10 +7,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const produtoInfo = document.getElementById("produto");
   const campoManual = document.getElementById("codigoManual");
   const readerDiv = document.getElementById("reader");
-  const reader = new Html5Qrcode("reader");
   const formValidade = document.getElementById("formValidade");
   const validadeInput = document.getElementById("validade");
   const imagemProduto = document.getElementById("imagemProduto");
+
+  const reader = new Html5Qrcode("reader");
 
   function mostrarMensagem(texto, tipo = "info") {
     status.textContent = texto;
@@ -18,22 +19,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   document.getElementById("abrirManual").addEventListener("click", () => {
-    // Exibe o input manual
     document.getElementById("manualInput").style.display = "block";
-
-    // Oculta o scanner
     readerDiv.style.display = "none";
 
-    // Pausa o scanner se estiver ativo
     if (scannerAtivo) {
-      reader.pause();
+      reader.stop().catch(() => {});
       scannerAtivo = false;
     }
 
-    // Torna o fundo da interface preto (corrigi para preto porque você tinha 'black' no background)
     document.body.style.backgroundColor = "black";
-
-    // Atualiza a mensagem de status
     mostrarMensagem("Digite o código e clique em buscar.");
   });
 
@@ -59,30 +53,34 @@ document.addEventListener("DOMContentLoaded", () => {
         };
       });
       mostrarMensagem("📷 Aponte para o código de barras...");
-      iniciarScanner();
+      iniciarScannerHtml5Qrcode();
     })
     .catch(() => {
       mostrarMensagem("Erro ao carregar produtos.", "erro");
     });
 
-  function iniciarScanner() {
+  function iniciarScannerHtml5Qrcode() {
     reader.start(
       { facingMode: { exact: "environment" } },
-      { fps: 15, qrbox: { width: 350, height: 150 } },
+      {
+        fps: 10,
+        qrbox: { width: 250, height: 350 }
+      },
       (decodedText) => {
         if (!scannerAtivo) return;
         scannerAtivo = false;
 
         campoManual.value = decodedText;
         buscarProduto(decodedText);
-
         mostrarMensagem("");
         readerDiv.style.display = "none";
         formValidade.style.display = "block";
 
-        reader.pause();
+        reader.stop().catch(() => {});
       },
-      () => {}
+      (error) => {
+        // Silencia erros contínuos
+      }
     ).catch((err) => {
       mostrarMensagem("Erro ao iniciar a câmera.", "erro");
       console.error(err);
@@ -152,7 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  function salvarProduto(codigo, nomeProduto, validade) {
+  function salvarProduto(codigo, nomeProduto, validade /*, diasRestantes */) {
     mostrarMensagem("Salvando produto...");
 
     fetch('/api/salvar_produto_usuario', {
@@ -163,6 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
         nome: nomeProduto,
         validade: validade,
         imagem_url: ultimaImagem
+        // , dias_restantes: diasRestantes // <- habilite aqui se quiser salvar
       })
     })
       .then(res => {
@@ -177,8 +176,8 @@ document.addEventListener("DOMContentLoaded", () => {
         imagemProduto.style.display = "none";
         ultimaImagem = "";
         readerDiv.style.display = "block";
-        reader.resume();
         scannerAtivo = true;
+        iniciarScannerHtml5Qrcode(); // reinicia o scanner
       })
       .catch(err => {
         console.error("Erro ao salvar produto:", err);
@@ -197,11 +196,19 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    // 🧮 Cálculo de dias restantes
+    const hoje = new Date();
+    const dataValidade = new Date(validade + "T00:00:00"); // evita problemas com fuso horário
+    const diffEmMs = dataValidade - hoje;
+    const diasRestantes = Math.ceil(diffEmMs / (1000 * 60 * 60 * 24));
+
+    console.log(`Faltam ${diasRestantes} dias para vencer`);
+
     const prodLocal = produtos[codigo];
     const nomeProduto = prodLocal
       ? montarNomeCompleto(prodLocal.nome, prodLocal.marca, prodLocal.quantidade)
       : "Desconhecido";
 
-    salvarProduto(codigo, nomeProduto, validade);
+    salvarProduto(codigo, nomeProduto, validade /*, diasRestantes */);
   });
 });

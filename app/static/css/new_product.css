@@ -118,27 +118,34 @@
   /********/
 
   .form-modern {
-    display: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     margin-top: 20px;
     text-align: left;
   }
   
   .input-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     position: relative;
     margin-bottom: 20px;
   }
   
   .calendar-icon {
     position: absolute;
-    left: 10px;
+    left: 140px;
     top: 50%;
     transform: translateY(-50%);
     font-size: 18px;
   }
   
   .input-group input[type="date"] {
-    width: 100%;
-    padding: 12px 12px 12px 36px;
+    width: 40%;
+    padding: .9em;
     border: 1px solid #ccc;
     border-radius: 8px;
     outline: none;
@@ -149,12 +156,27 @@
   
   .input-group label {
     position: absolute;
-    left: 36px;
-    top: 10px;
-    font-size: 12px;
+    left: 180px;
+    top: 7px;
+    font-size: 1em;
     color: #666;
     pointer-events: none;
     transition: all 0.2s ease;
   }  
 
+  /* Configurações button novo produto */
+
+  .btn_new_product {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn_new_product > button {
+    border: none;
+    border-radius: 5px;
+    padding: .3em;
+    font-size: 1.2em;
+  }
+    
 }
